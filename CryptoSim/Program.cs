@@ -1,6 +1,14 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 using CryptoSim.Dto;
 using CryptoSim.Model;
+using CryptoSim.Services;
+using CryptoSim.Services.Exceptions;
+using CryptoSim.Services.Impl;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +19,21 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Filename=CryptoDb_EGYP5A.db"));
 
 //TODO Services
+builder.Services.AddScoped<IUserService, UserServiceImpl>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
+builder.Services.AddProblemDetails(options =>
+{
+    options.CustomizeProblemDetails = context =>
+    {
+        context.ProblemDetails.Instance = $"{context.HttpContext.Request.Method} ${context.HttpContext.Request.Path}";
+        context.ProblemDetails.Extensions.TryAdd("requestId", context.HttpContext.TraceIdentifier);
+        var activity = context.HttpContext.Features.Get<IHttpActivityFeature>()?.Activity;
+        context.ProblemDetails.Extensions.TryAdd("traceId", activity?.Id);
+    };
+});
+builder.Services.AddExceptionHandler<BadRequestExceptionHandlerImpl>();
 
 // Swagger configuration
 builder.Services.AddEndpointsApiExplorer();
@@ -21,7 +42,22 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "CryptoSim API", Version = "v1" });
 });
 
-//TODO JWT
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "https://localhost:5177",
+            ValidAudience = "https://localhost:5177",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("randomSztring12345_x2____randomSztring12345_x2")),
+        };
+    });
 
 
 var app = builder.Build();
@@ -35,7 +71,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// app.UseAuthorization();
+app.UseAuthorization();
+app.UseAuthentication();
+
+app.UseExceptionHandler();
 
 app.MapControllers();
 

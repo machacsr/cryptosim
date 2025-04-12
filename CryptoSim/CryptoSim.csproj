@@ -36,9 +36,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Configuration\" />
       <Folder Include="Migrations\" />
       <Folder Include="Repository\" />
-      <Folder Include="Services\" />
     </ItemGroup>
 
 </Project>
