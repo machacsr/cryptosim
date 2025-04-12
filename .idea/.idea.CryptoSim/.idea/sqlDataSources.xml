@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="40c90607-1347-4a39-b492-bca50234b61b" name="CryptoDb_EGYP5A Mapping">
+      <data-sources db="a481aaff-3ef4-4fa9-a017-5aa88d5a28a3" />
+      <scope>
+        <node kind="database" negative="1" />
+      </scope>
+    </mapping>
+  </component>
+</project>
