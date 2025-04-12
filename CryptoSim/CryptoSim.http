@@ -1,0 +1,6 @@
+@CryptoSim_HostAddress = http://localhost:5177
+
+GET {{CryptoSim_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
