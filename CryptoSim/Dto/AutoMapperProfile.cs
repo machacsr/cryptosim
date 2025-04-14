@@ -9,6 +9,11 @@ public class AutoMapperProfile : Profile
     {
         CreateMap<User, UserDto>();
         CreateMap<UserCreateDto, User>();
+        
+        
+        CreateMap<Wallet, WalletDto>();
+        
+        CreateMap<CryptoTransaction, CryptoTransactionDto>();
 
     }
 }

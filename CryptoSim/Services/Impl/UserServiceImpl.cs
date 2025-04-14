@@ -10,7 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace CryptoSim.Services.Impl;
 
-public class UserServiceImpl(AppDbContext context, IMapper mapper) : IUserService
+public class UserServiceImpl(AppDbContext context, IMapper mapper) : UserService
 {
     public async Task<UserDto> RegisterAsync(UserCreateDto userDto)
     {
@@ -35,7 +35,7 @@ public class UserServiceImpl(AppDbContext context, IMapper mapper) : IUserServic
             .FirstOrDefaultAsync(x => x.Email == userDto.Email);
         if (user == null || !BCrypt.Net.BCrypt.Verify(userDto.Password, user.Password))
         {
-            throw new UnauthorizedAccessException("Invalid email or password!");
+            throw new BadRequestException("Validation error", "Invalid email or password!");
         }
 
         return await GenerateToken(user);
@@ -64,7 +64,7 @@ public class UserServiceImpl(AppDbContext context, IMapper mapper) : IUserServic
         if (user == null)
         {
             //FIXME 404
-            throw new BadRequestException("Validation error","Invalid email or password!");
+            throw new BadRequestException("Validation error",$"User not found with id: {userId}");
         }
         return mapper.Map<UserDto>(user);
     }

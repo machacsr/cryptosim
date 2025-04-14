@@ -12,6 +12,6 @@ public class Wallet
 
     public double Balance { get; set; }
 
-    private List<CryptoTransaction> CryptoTransactions { get; set; } = new();
+    public List<CryptoTransaction> CryptoTransactions { get; set; } = new();
 
 }

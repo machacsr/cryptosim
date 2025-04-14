@@ -1,32 +1,34 @@
+
+
 -- --- Felhasználók ---
-INSERT INTO User (Name, Email, Password)
+INSERT INTO Users (Id, Name, Email, Password)
 VALUES
-    ('Alice', 'alice@example.com', 'hashed-password-1'),
-    ('Bob', 'bob@example.com', 'hashed-password-2');
+    (1, 'Alice', 'alice@example.com', '$2a$11$cQ1R7E0WVTgp/vJJmJ5n0.lnZ6Q3dlmqz3fro3pLGVWeRrD3ph.v6'),--password -> stringst
+    (2, 'Bob', 'bob@example.com', '$2a$11$cQ1R7E0WVTgp/vJJmJ5n0.lnZ6Q3dlmqz3fro3pLGVWeRrD3ph.v6');--password -> stringst
 
 -- --- Pénztárcák ---
-INSERT INTO Wallet (UserId, Balance)
+INSERT INTO Wallets (UserId, Balance)
 VALUES
     (1, 10000.00), -- Alice 10.000 HUF
     (2, 5000.00);  -- Bob 5.000 HUF
 
 -- --- Kriptovaluták ---
-INSERT INTO Crypto (Name, Symbol, Price, Quantity)
+INSERT INTO Cryptos (Name, Symbol)
 VALUES
-    ('Bitcoin', 'BTC', 30000.00, 100),
-    ('Ethereum', 'ETH', 1800.00, 500),
-    ('Solana', 'SOL', 100.00, 1000);
+    ('Bitcoin', 'BTC' ),
+    ('Ethereum', 'ETH' ),
+    ('Solana', 'SOL' );
 
 -- --- Listázások ---
-INSERT INTO CryptoListing (CryptoId, InitialPrice, InitialAmount, OfferValidTo)
+INSERT INTO CryptoListings (CryptoId, Price, State)
 VALUES
-    (1, 29500.00, 5, DATETIME('now', '+7 days')),
-    (2, 1750.00, 20, DATETIME('now', '+7 days')),
-    (3, 95.00, 100, DATETIME('now', '+3 days'));
+    (1, 29500.00, 'ACTIVE'),
+    (2, 1750.00, 'ACTIVE'),
+    (3, 95.00, 'ACTIVE');
 
 -- --- Tranzakciók ---
-INSERT INTO CryptoTransaction (UserId, WalletId, CryptoListingId, TransactionType, Quantity, UnitPrice, TotalAmount, Timestamp)
+INSERT INTO CryptoTransactions (Id, UserId, WalletId, CryptoListingId, TransactionType, Quantity, UnitPrice, TotalAmount, Timestamp)
 VALUES
-    (1, 1, 1, 'Buy', 0.1, 29500.00, 2950.00, CURRENT_TIMESTAMP),
-    (1, 1, 2, 'Buy', 1.5, 1750.00, 2625.00, CURRENT_TIMESTAMP),
-    (2, 2, 3, 'Buy', 10.0, 95.00, 950.00, CURRENT_TIMESTAMP);
+    ('f26c1475-55e3-4444-9fdd-df8f92def564', 1, 1, 1, 0, 1, 29500.00, 2950.00, CURRENT_TIMESTAMP),
+    ('681dd320-32e2-4f78-9534-3dc6ca22780d', 1, 1, 2, 0, 2, 1750.00, 2625.00, CURRENT_TIMESTAMP),
+    ('a2d53ab4-a719-4ca3-98fe-65e8add88266', 2, 2, 3, 0, 10.0, 95.00, 950.00, CURRENT_TIMESTAMP);

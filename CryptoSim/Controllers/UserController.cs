@@ -1,13 +1,14 @@
 using CryptoSim.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CryptoSim.Controllers;
 
-public class AuthController(IUserService userService): ControllerBase
+[ApiController]
+public class AuthController(UserService userService): ControllerBase
 {
     [HttpPost("login")]
-    [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] UserLoginDto userDto)
     {
         var token = await userService.LoginAsync(userDto);
@@ -17,15 +18,18 @@ public class AuthController(IUserService userService): ControllerBase
 
 [ApiController]
 [Route("users")]
-public class UserController(IUserService userService): ControllerBase
+public class UserController(UserService userService): ControllerBase
 {
     [HttpGet("{userId}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
     public async Task<IActionResult> Get(int userId)
     {
         return Ok(await userService.GetUserAsync(userId));
     }
     
     [HttpPut("{userId}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<IActionResult> UpdateUser(int userId, [FromBody] UserCreateDto userCreateDto)
     {
         var result = await userService.UpdateUserAsync(userId, userCreateDto);
@@ -33,6 +37,7 @@ public class UserController(IUserService userService): ControllerBase
     }
 
     [HttpDelete("{userId}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<IActionResult> DeleteUser(int userId)
     {
         await userService.DeleteUserAsync(userId);
@@ -40,7 +45,6 @@ public class UserController(IUserService userService): ControllerBase
     }
     
     [HttpPost("register")]
-    [AllowAnonymous]
     public async Task<IActionResult> Register([FromBody] UserCreateDto userCreateDto)
     {
         var result = await userService.RegisterAsync(userCreateDto);

@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using CryptoSim.Dto;
 using CryptoSim.Model;
+using CryptoSim.Repository;
 using CryptoSim.Services;
 using CryptoSim.Services.Exceptions;
 using CryptoSim.Services.Impl;
@@ -19,7 +20,9 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Filename=CryptoDb_EGYP5A.db"));
 
 //TODO Services
-builder.Services.AddScoped<IUserService, UserServiceImpl>();
+builder.Services.AddScoped<UserService, UserServiceImpl>();
+builder.Services.AddScoped<WalletService, WalletServiceImpl>();
+builder.Services.AddScoped<IUnitOfWork, BasicUnitOfWork>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
@@ -40,7 +43,29 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "CryptoSim API", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please insert JWT token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+    {
+        new OpenApiSecurityScheme {
+            Reference = new OpenApiReference {
+                Type = ReferenceType.SecurityScheme,
+                Id = "Bearer"
+            }
+        },
+        []
+    }});
 });
+
+builder.Services.AddAuthorization();
 
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
 builder.Services

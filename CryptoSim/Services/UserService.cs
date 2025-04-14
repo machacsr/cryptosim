@@ -1,6 +1,6 @@
 namespace CryptoSim.Services;
 
-public interface IUserService
+public interface UserService
 {
     Task<UserDto> RegisterAsync(UserCreateDto userDto);
     Task<string> LoginAsync(UserLoginDto userDto);
