@@ -6,5 +6,5 @@ public class CryptoDto
     public string Symbol { get; set; }
     public string Name { get; set; }
     
-    // public  List<CryptoListingDto> CryptoListings { get; set; } = new();
+    public  List<CryptoListingDto> CryptoListings { get; set; } = new();
 }

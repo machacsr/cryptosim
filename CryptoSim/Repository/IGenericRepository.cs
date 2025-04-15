@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CryptoSim.Repository
 {
@@ -6,13 +7,13 @@ namespace CryptoSim.Repository
     {
         IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null, string[]? includeProperties = null);
         TEntity? GetById(object id, string[]? includeReferences = null, string[]? includeCollections = null);
-        void Insert(TEntity entity);
+        TEntity Insert(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
 
 
         Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null, string[]? includeProperties = null);
         Task<TEntity?> GetByIdAsync(object id, string[]? includeReferences = null, string[]? includeCollections = null);
-        Task InsertAsync(TEntity entity);
+        Task<TEntity> InsertAsync(TEntity entity);
     }
 }

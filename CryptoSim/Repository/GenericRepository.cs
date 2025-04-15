@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using CryptoSim.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CryptoSim.Repository
 {
@@ -106,14 +107,14 @@ namespace CryptoSim.Repository
             return entity;
         }
 
-        public void Insert(TEntity entity)
+        public TEntity Insert(TEntity entity)
         {
-            _dbset.Add(entity);
+            return _dbset.Add(entity).Entity;
         }
 
-        public async Task InsertAsync(TEntity entity)
+        public async Task<TEntity> InsertAsync(TEntity entity)
         {
-            await _dbset.AddAsync(entity);
+            return (await _dbset.AddAsync(entity)).Entity;
         }
 
         public void Update(TEntity entity)

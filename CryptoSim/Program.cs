@@ -22,6 +22,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Filena
 //TODO Services
 builder.Services.AddScoped<UserService, UserServiceImpl>();
 builder.Services.AddScoped<WalletService, WalletServiceImpl>();
+builder.Services.AddScoped<CryptoService, CryptoServiceImpl>();
 builder.Services.AddScoped<IUnitOfWork, BasicUnitOfWork>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));

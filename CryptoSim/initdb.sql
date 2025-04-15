@@ -13,18 +13,42 @@ VALUES
     (2, 5000.00);  -- Bob 5.000 HUF
 
 -- --- Kriptovaluták ---
-INSERT INTO Cryptos (Name, Symbol)
+INSERT INTO Cryptos (Id, Name, Symbol)
 VALUES
-    ('Bitcoin', 'BTC' ),
-    ('Ethereum', 'ETH' ),
-    ('Solana', 'SOL' );
+    (1, 'Bitcoin', 'BTC'),
+    (2, 'Ethereum', 'ETH'),
+    (3, 'Solana', 'SOL'),
+    (4, 'Cardano', 'ADA'),
+    (5, 'Polkadot', 'DOT'),
+    (6, 'Ripple', 'XRP'),
+    (7, 'Litecoin', 'LTC'),
+    (8, 'Chainlink', 'LINK'),
+    (9, 'Stellar', 'XLM'),
+    (10, 'Uniswap', 'UNI'),
+    (11, 'Avalanche', 'AVAX'),
+    (12, 'VeChain', 'VET'),
+    (13, 'Algorand', 'ALGO'),
+    (14, 'Cosmos', 'ATOM'),
+    (15, 'Filecoin', 'FIL');
 
 -- --- Listázások ---
 INSERT INTO CryptoListings (CryptoId, Price, State)
 VALUES
     (1, 29500.00, 'ACTIVE'),
     (2, 1750.00, 'ACTIVE'),
-    (3, 95.00, 'ACTIVE');
+    (3, 95.00, 'ACTIVE'),
+    (4, 0.35, 'ACTIVE'),
+    (5, 6.20, 'ACTIVE'),
+    (6, 0.50, 'ACTIVE'),
+    (7, 85.00, 'ACTIVE'),
+    (8, 7.80, 'ACTIVE'),
+    (9, 0.11, 'ACTIVE'),
+    (10, 5.40, 'ACTIVE'),
+    (11, 18.30, 'ACTIVE'),
+    (12, 0.025, 'ACTIVE'),
+    (13, 0.16, 'ACTIVE'),
+    (14, 8.90, 'ACTIVE'),
+    (15, 4.75, 'ACTIVE');
 
 -- --- Tranzakciók ---
 INSERT INTO CryptoTransactions (Id, UserId, WalletId, CryptoListingId, TransactionType, Quantity, UnitPrice, TotalAmount, Timestamp)
