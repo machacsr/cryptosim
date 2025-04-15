@@ -34,21 +34,21 @@ VALUES
 -- --- Listázások ---
 INSERT INTO CryptoListings (CryptoId, Price, State)
 VALUES
-    (1, 29500.00, 'ACTIVE'),
-    (2, 1750.00, 'ACTIVE'),
-    (3, 95.00, 'ACTIVE'),
-    (4, 0.35, 'ACTIVE'),
-    (5, 6.20, 'ACTIVE'),
-    (6, 0.50, 'ACTIVE'),
-    (7, 85.00, 'ACTIVE'),
-    (8, 7.80, 'ACTIVE'),
-    (9, 0.11, 'ACTIVE'),
-    (10, 5.40, 'ACTIVE'),
-    (11, 18.30, 'ACTIVE'),
-    (12, 0.025, 'ACTIVE'),
-    (13, 0.16, 'ACTIVE'),
-    (14, 8.90, 'ACTIVE'),
-    (15, 4.75, 'ACTIVE');
+    (1, 29500.00, 'Active'),
+    (2, 1750.00, 'Active'),
+    (3, 95.00, 'Active'),
+    (4, 0.35, 'Active'),
+    (5, 6.20, 'Active'),
+    (6, 0.50, 'Active'),
+    (7, 85.00, 'Active'),
+    (8, 7.80, 'Active'),
+    (9, 0.11, 'Active'),
+    (10, 5.40, 'Active'),
+    (11, 18.30, 'Active'),
+    (12, 0.025, 'Active'),
+    (13, 0.16, 'Active'),
+    (14, 8.90, 'Active'),
+    (15, 4.75, 'Active');
 
 -- --- Tranzakciók ---
 INSERT INTO CryptoTransactions (Id, UserId, WalletId, CryptoListingId, TransactionType, Quantity, UnitPrice, TotalAmount, Timestamp)

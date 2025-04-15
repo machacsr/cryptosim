@@ -14,7 +14,7 @@ public class AutoMapperProfile : Profile
         CreateMap<Wallet, WalletDto>();
         
         CreateMap<CryptoTransaction, CryptoTransactionDto>();
-        
+
         CreateMap<Crypto, CryptoDto>();
         
         CreateMap<CryptoListing, CryptoListingDto>();

@@ -7,16 +7,16 @@ namespace CryptoSim.Services.Impl;
 
 public class CryptoServiceImpl(IUnitOfWork unitOfWork, IMapper mapper) : CryptoService
 {
-    public async Task<CryptoDto> GetAllCryptoAsync()
+    public async Task<List<CryptoDto>> GetAllCryptoAsync()
     {
-        var cryptos = await unitOfWork.CryptoRepository.GetAllAsync(null, ["CryptoListing"]);
-        
-        return mapper.Map<CryptoDto>(cryptos);
+        var cryptos = await unitOfWork.CryptoRepository.GetAllAsync(null, ["CryptoListings"]);
+
+        return cryptos.Select(mapper.Map<CryptoDto>).ToList();
     }
 
     public async Task<CryptoDto> GetCryptoAsync(int cryptoId)
     {
-        return mapper.Map<CryptoDto>(await unitOfWork.CryptoRepository.GetByIdAsync(cryptoId, null, ["CryptoListing"]));
+        return mapper.Map<CryptoDto>(await unitOfWork.CryptoRepository.GetByIdAsync(cryptoId, null, ["CryptoListings"]));
     }
 
     public async Task<CryptoDto> CreateCryptoAsync(CryptoDto cryptoDto)
@@ -24,7 +24,6 @@ public class CryptoServiceImpl(IUnitOfWork unitOfWork, IMapper mapper) : CryptoS
         var crypto = mapper.Map<Crypto>(cryptoDto);
         crypto = await unitOfWork.CryptoRepository.InsertAsync(crypto);
         await unitOfWork.SaveAsync();
-   
         return mapper.Map<CryptoDto>(crypto);
     }
 

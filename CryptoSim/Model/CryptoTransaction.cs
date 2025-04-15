@@ -14,8 +14,8 @@ public class CryptoTransaction
 
     public int CryptoListingId { get; set; }
     public CryptoListing CryptoListing { get; set; } // Connected to actual available item on the market
-
-    public CryptoTransactionType TransactionType { get; set; } // Buy, sell
+    
+    public CryptoTransactionType TransactionType { get; set; } // Buy, sell //FIXME
 
     public int Quantity { get; set; }
     public double UnitPrice { get; set; }
@@ -25,5 +25,6 @@ public class CryptoTransaction
 
 public enum CryptoTransactionType
 {
-    BUY, SELL
+    SELL,
+    BUY,
 }

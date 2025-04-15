@@ -4,7 +4,7 @@ namespace CryptoSim.Services;
 
 public interface CryptoService
 {
-    Task<CryptoDto> GetAllCryptoAsync();
+    Task<List<CryptoDto>> GetAllCryptoAsync();
 
     Task<CryptoDto> GetCryptoAsync(int cryptoId);
 

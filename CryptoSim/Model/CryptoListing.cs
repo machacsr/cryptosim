@@ -11,11 +11,12 @@ public class CryptoListing // mutable
     public Crypto Crypto { get; set; }
 
     public double Price { get; set; }
-    public CryptoListingState State { get; set; } // Only one active can be exits at time
+    public CryptoListingState State { get; set; } // Only one active can be exits at time //FIXME
     public List<CryptoTransaction> CryptoTransactions { get; set; } = new();
 }
 
 public enum CryptoListingState
 {
-    ACTIVE, ARCHIVED
+    Archived = 0,
+    Active = 1, c
 }

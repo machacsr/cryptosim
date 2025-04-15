@@ -13,7 +13,7 @@ public class PortfolioServiceImpl(IUnitOfWork unitOfWork, IMapper mapper, Wallet
         var walletDto = await walletService.GetWalletAsync(userId);
         
         // find actual crypto listings
-        var latestCryptoListings = (await unitOfWork.CryptoListingRepository.GetAllAsync(listing => listing.State == CryptoListingState.ACTIVE, ["Crypto"])).ToList();
+        var latestCryptoListings = (await unitOfWork.CryptoListingRepository.GetAllAsync(listing => listing.State == CryptoListingState.Active, ["Crypto"])).ToList();
 
         // initiate portfolio
         var portfolio = new PortfolioDto()

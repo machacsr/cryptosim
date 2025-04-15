@@ -17,7 +17,7 @@ public class TradeServiceImpl(IUnitOfWork unitOfWork, IMapper mapper, AppDbConte
         }
         
         // get actual price of selected crypto
-        var latestCryptoListing = (await unitOfWork.CryptoListingRepository.GetAllAsync(listing => listing.CryptoId == cryptoTradeDto.CryptoId && listing.State == CryptoListingState.ACTIVE)).First();
+        var latestCryptoListing = (await unitOfWork.CryptoListingRepository.GetAllAsync(listing => listing.CryptoId == cryptoTradeDto.CryptoId && listing.State == CryptoListingState.Active)).First();
         
         var purchasePrice = latestCryptoListing.Price * cryptoTradeDto.Quantity;
 
@@ -61,7 +61,7 @@ public class TradeServiceImpl(IUnitOfWork unitOfWork, IMapper mapper, AppDbConte
         }
         
         // get actual price of owned crypto
-        var latestCryptoListing = (await unitOfWork.CryptoListingRepository.GetAllAsync(listing => listing.CryptoId == cryptoTradeDto.CryptoId && listing.State == CryptoListingState.ACTIVE)).First();
+        var latestCryptoListing = (await unitOfWork.CryptoListingRepository.GetAllAsync(listing => listing.CryptoId == cryptoTradeDto.CryptoId && listing.State == CryptoListingState.Active)).First();
         
         var sellingPrice = latestCryptoListing.Price * cryptoTradeDto.Quantity;
 
