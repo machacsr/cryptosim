@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using CryptoSim.Dto;
 using CryptoSim.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -11,10 +12,24 @@ namespace CryptoSim.Controllers;
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class WalletController(WalletService walletService): ControllerBase
 {
-    [HttpGet]
-    public async Task<IActionResult> Get()
+    private int UserId => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+    
+    [HttpGet("{userId}")]
+    public async Task<IActionResult> GetWallet(int? userId)
     {
-        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-        return Ok(await walletService.GetWalletAsync(userId));
+        return Ok(await walletService.GetWalletAsync(userId ?? UserId));
+    }
+    
+    [HttpPut("{userId}")]
+    public async Task<IActionResult> UpdateBalance(int? userId, [FromBody] WalletBalanceDto balanceDto)
+    {
+        return Ok(await walletService.UpdateWalletAsync(userId ?? UserId, balanceDto));
+    }
+    
+    [HttpDelete("{userId}")]
+    public async Task<IActionResult> DeleteWallet(int? userId)
+    {
+        await walletService.DeleteWalletAsync(userId ?? UserId);
+        return Ok();
     }
 }
