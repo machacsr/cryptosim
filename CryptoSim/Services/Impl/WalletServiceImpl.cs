@@ -3,6 +3,7 @@ using CryptoSim.Dto;
 using CryptoSim.Model;
 using CryptoSim.Repository;
 using CryptoSim.Services.Exceptions;
+using CryptoSim.Utils;
 
 namespace CryptoSim.Services.Impl;
 
@@ -11,40 +12,9 @@ public class WalletServiceImpl(IUnitOfWork unitOfWork, IMapper mapper) : WalletS
     public async Task<WalletDto> GetWalletAsync(int userId)
     {
         var wallet = await FindWalletByUserId(userId, ["CryptoTransactions", "CryptoTransactions.CryptoListing", "CryptoTransactions.CryptoListing.Crypto"]);
-        
-        var currentWalletItems = new Dictionary<string, WalletCryptoItemDto>();
-        foreach (var cryptoTransaction in wallet.CryptoTransactions)
-        {
-            var listing = cryptoTransaction.CryptoListing;
-            var key = listing.Crypto.Symbol;
-
-            var itemInWallet = currentWalletItems.GetValueOrDefault(key);
-
-            if (cryptoTransaction.TransactionType == CryptoTransactionType.BUY && itemInWallet == null)
-            {
-                currentWalletItems.Add(listing.Crypto.Symbol, new WalletCryptoItemDto
-                {
-                    Symbol = listing.Crypto.Symbol,
-                    Name = listing.Crypto.Name,
-                    Quantity = cryptoTransaction.Quantity,
-                });
-            }
-            else if (cryptoTransaction.TransactionType == CryptoTransactionType.BUY)
-            {
-                itemInWallet.Quantity += cryptoTransaction.Quantity;
-            }
-            else if (cryptoTransaction.TransactionType == CryptoTransactionType.SELL && itemInWallet == null)
-            {
-                // not exists case
-            }
-            else if (cryptoTransaction.TransactionType == CryptoTransactionType.SELL)
-            {
-                itemInWallet.Quantity -= cryptoTransaction.Quantity;
-            }
-        }
 
         var walletDto = mapper.Map<WalletDto>(wallet);
-        walletDto.WalletCryptoItems = currentWalletItems.Values.ToList();
+        walletDto.WalletCryptoItems = TransactionEvaluator.Evaluate(wallet);
         return walletDto;
     }
 
@@ -77,7 +47,8 @@ public class WalletServiceImpl(IUnitOfWork unitOfWork, IMapper mapper) : WalletS
 
         if (wallets.Length == 0)
         {
-            throw new Exception("There are no wallets associated with this user");
+            //Todo other kind exception
+            throw new BadRequestException("Configuration Error", "There are no wallets associated with this user");
         }
         
         if (wallets.Length > 1)

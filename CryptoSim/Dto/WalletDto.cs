@@ -17,6 +17,7 @@ public class WalletBalanceDto
 
 public class WalletCryptoItemDto
 {
+    public int CryptoId { get; set; }
     public string Symbol { get; set; }
     public string Name { get; set; }
     public int Quantity { get; set; }

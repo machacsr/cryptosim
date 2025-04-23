@@ -25,6 +25,7 @@ CryptoTransaction
 - UserId
 - WalletId
 - CryptoListingId
+- CryptoId // only for easier computation
 - TransactionType - Buy, Sell
 - Quantity
 - UnitPrice

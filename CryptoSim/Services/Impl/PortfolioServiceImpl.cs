@@ -30,6 +30,7 @@ public class PortfolioServiceImpl(IUnitOfWork unitOfWork, IMapper mapper, Wallet
             portfolio.PortfolioItems.Add(new PortfolioItemDto()
             {
                 Name = walletCryptoItem.Name,
+                CryptoId = walletCryptoItem.CryptoId,
                 Symbol = walletCryptoItem.Symbol,
                 Quantity = walletCryptoItem.Quantity,
                 CurrentPrice = listingForWalletItem.Price,

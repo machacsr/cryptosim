@@ -4,6 +4,7 @@ using CryptoSim.Dto;
 using CryptoSim.Model;
 using CryptoSim.Repository;
 using CryptoSim.Services;
+using CryptoSim.Services.Background;
 using CryptoSim.Services.Exceptions;
 using CryptoSim.Services.Impl;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -26,6 +27,8 @@ builder.Services.AddScoped<CryptoService, CryptoServiceImpl>();
 builder.Services.AddScoped<TradeService, TradeServiceImpl>();
 builder.Services.AddScoped<PortfolioService, PortfolioServiceImpl>();
 builder.Services.AddScoped<IUnitOfWork, BasicUnitOfWork>();
+builder.Services.AddHostedService<ScopedBackgroundService>();
+builder.Services.AddScoped<BackgroundExchangeRateService, BackgroundExchangeRateServiceImpl>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 

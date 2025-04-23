@@ -16,7 +16,11 @@ public class AutoMapperProfile : Profile
         CreateMap<CryptoTransaction, CryptoTransactionDto>();
 
         CreateMap<Crypto, CryptoDto>();
-        
+        CreateMap<CreateCryptoDto, Crypto>();
+
         CreateMap<CryptoListing, CryptoListingDto>();
+        CreateMap<CryptoListing, CryptoListingMarketplaceDto>()
+            .ForMember(dest => dest.Symbol, opt => opt.MapFrom(src => src.Crypto.Symbol))
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Crypto.Name));
     }
 }

@@ -23,9 +23,9 @@ public class CryptoController(CryptoService cryptoService): ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public async Task<IActionResult> GetAllCryptos()
+    public async Task<IActionResult> GetAllLatestCryptoListingAsync()
     {
-        return Ok(await cryptoService.GetAllCryptoAsync());
+        return Ok(await cryptoService.GetAllLatestCryptoListingAsync());
     }
     
     /// <summary>
@@ -33,7 +33,7 @@ public class CryptoController(CryptoService cryptoService): ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet("{cryptoId:int}")]
-    public async Task<IActionResult> GetAllCryptos(int cryptoId)
+    public async Task<IActionResult> GetCryptoAsync(int cryptoId)
     {
         return Ok(await cryptoService.GetCryptoAsync(cryptoId));
     }
@@ -44,7 +44,7 @@ public class CryptoController(CryptoService cryptoService): ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpPost]
-    public async Task<IActionResult> CreateCryptoAsync([FromBody] CryptoDto createRequestDto)
+    public async Task<IActionResult> CreateCryptoAsync([FromBody] CreateCryptoDto createRequestDto)
     {
         return Ok(await cryptoService.CreateCryptoAsync(createRequestDto));
     }
@@ -53,7 +53,7 @@ public class CryptoController(CryptoService cryptoService): ControllerBase
     /// Kriptovaluta törlése
     /// </summary>
     /// <returns></returns>
-    [HttpPost("{cryptoId:int}")]
+    [HttpDelete("{cryptoId:int}")]
     public async Task<IActionResult> DeleteCryptoAsync(int cryptoId)
     {
         await cryptoService.DeleteCryptoAsync(cryptoId);

@@ -4,11 +4,11 @@ namespace CryptoSim.Services;
 
 public interface CryptoService
 {
-    Task<List<CryptoDto>> GetAllCryptoAsync();
+    Task<List<CryptoListingMarketplaceDto>> GetAllLatestCryptoListingAsync();
 
     Task<CryptoDto> GetCryptoAsync(int cryptoId);
 
-    Task<CryptoDto> CreateCryptoAsync(CryptoDto cryptoDto);
+    Task<CryptoDto> CreateCryptoAsync(CreateCryptoDto cryptoDto);
 
     Task DeleteCryptoAsync(int cryptoId);
 }
