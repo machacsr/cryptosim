@@ -43,7 +43,7 @@ public class TransactionController(IUnitOfWork unitOfWork, IMapper mapper): Cont
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<IActionResult> TransactionDetails(string transactionId)
     {
-        var cryptoTransaction = await unitOfWork.CryptoTransactionRepository.GetByIdAsync(transactionId);
+        var cryptoTransaction = await unitOfWork.CryptoTransactionRepository.GetByIdAsync(Guid.Parse(transactionId));
         if (cryptoTransaction == null)
         {
             throw new BadRequestException("Validation exception", "User not found");
