@@ -1,5 +1,3 @@
-
-
 -- --- Felhasználók ---
 INSERT INTO Users (Id, Name, Email, Password)
 VALUES

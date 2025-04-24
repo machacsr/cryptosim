@@ -46,3 +46,8 @@ Crypto
 - Name
 - Symbol
 - CryptoListings
+
+
+## First run
+
+You have to run initdb.sql immediately after first run to fill database with inital data.
