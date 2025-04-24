@@ -8,8 +8,9 @@ namespace CryptoSim.Controllers;
 
 /// <summary>
 /// 3.5 Árfolyam változás kezelése
-/// 
-/// Manuális árfolyam frissítés
+///
+/// A kriptovaluták árfolyamának változása dinamikusan történik egy háttérszolgáltatáson
+/// keresztül, amely külön szálon fut.
 /// </summary>
 [ApiController]
 [Route("crypto/price")]//based on requirements
@@ -30,7 +31,7 @@ public class ExchangeRateController(ExchangeRateService exchangeRateService): Co
     /// <summary>
     /// Árfolyamváltozási naplózás
     /// </summary>
-    [HttpGet("history/{cryptoId}")]
+    [HttpGet("history/{cryptoId:int}")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<IActionResult> CreateCryptoListingAsync(int cryptoId)
     {

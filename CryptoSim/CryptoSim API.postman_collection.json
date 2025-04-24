@@ -6,6 +6,146 @@
 	},
 	"item": [
 		{
+			"name": "crypto/price (task 3.5)",
+			"item": [
+				{
+					"name": "Manuális árfolyam frissítés",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cryptoId\": -55062689,\n    \"newPrice\": -38678929.114415884\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/crypto/price",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"crypto",
+								"price"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cryptoId\": -55062689,\n    \"newPrice\": -38678929.114415884\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/crypto/price",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"crypto",
+										"price"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Árfolyamváltozási naplózás",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/crypto/price/history/:cryptoId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"crypto",
+								"price",
+								"history",
+								":cryptoId"
+							],
+							"variable": [
+								{
+									"key": "cryptoId",
+									"value": "5",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/crypto/price/history/:cryptoId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"crypto",
+										"price",
+										"history",
+										":cryptoId"
+									],
+									"variable": [
+										{
+											"key": "cryptoId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "cryptos (task 3.3)",
 			"item": [
 				{
@@ -903,6 +1043,288 @@
 									],
 									"path": [
 										"wallet",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "transactions (task 3.7)",
+			"item": [
+				{
+					"name": "Tranzakciók listázása",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transactions/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transactions",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transactions/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 24 Apr 2025 17:20:32 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"f6a342e0-5f89-45cb-8fdf-ce7fbfecc43c\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Sell\",\n        \"quantity\": 3,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 13629.702000000001,\n        \"timestamp\": \"2025-04-23T22:02:41.30498\"\n    },\n    {\n        \"id\": \"f83e9e4b-ba5a-49a9-ba9b-aa033b53c31d\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Sell\",\n        \"quantity\": 3,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 13629.702000000001,\n        \"timestamp\": \"2025-04-23T22:02:32.075601\"\n    },\n    {\n        \"id\": \"a48701a5-1c07-4992-a214-13adab105c7f\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Sell\",\n        \"quantity\": 1,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 4543.234,\n        \"timestamp\": \"2025-04-23T22:02:16.802592\"\n    },\n    {\n        \"id\": \"bbd16745-2a19-4457-8be9-9b078e0d4ee4\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Buy\",\n        \"quantity\": 5,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 22716.170000000002,\n        \"timestamp\": \"2025-04-23T21:36:07.761163\"\n    },\n    {\n        \"id\": \"d36e9e42-80ad-4d45-9e86-954de9b25ed7\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Buy\",\n        \"quantity\": 5,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 22716.170000000002,\n        \"timestamp\": \"2025-04-23T21:36:02.310851\"\n    },\n    {\n        \"id\": \"3b4d42dc-3f61-43c4-87f4-df288c668ddd\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Buy\",\n        \"quantity\": 5,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 22716.170000000002,\n        \"timestamp\": \"2025-04-23T21:35:58.6804\"\n    },\n    {\n        \"id\": \"1348df24-8e2d-483e-8b15-21989e8ef223\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Buy\",\n        \"quantity\": 5,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 22716.170000000002,\n        \"timestamp\": \"2025-04-23T21:35:50.732203\"\n    },\n    {\n        \"id\": \"ca213c84-33f9-4639-a15f-65afd4a26312\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Buy\",\n        \"quantity\": 5,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 22716.170000000002,\n        \"timestamp\": \"2025-04-23T21:35:13.506567\"\n    },\n    {\n        \"id\": \"8e113cd0-8e5f-43d8-9891-2233a550a85c\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Sell\",\n        \"quantity\": 21,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 95407.914,\n        \"timestamp\": \"2025-04-23T20:18:41.083967\"\n    },\n    {\n        \"id\": \"c5b36bc8-c8b2-4a0f-9b61-5b50adacdd9d\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Buy\",\n        \"quantity\": 5,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 22716.170000000002,\n        \"timestamp\": \"2025-04-23T20:11:59.897213\"\n    },\n    {\n        \"id\": \"84c6c2bb-8a5e-4554-b4a2-9704659feb45\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Buy\",\n        \"quantity\": 5,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 22716.170000000002,\n        \"timestamp\": \"0001-01-01T00:00:00\"\n    },\n    {\n        \"id\": \"3a81ba47-1515-4ce1-a52b-0ff5458d14a6\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Buy\",\n        \"quantity\": 5,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 22716.170000000002,\n        \"timestamp\": \"0001-01-01T00:00:00\"\n    },\n    {\n        \"id\": \"1d14dabb-85c5-49ad-b3da-174c13156d42\",\n        \"userId\": 1,\n        \"walletId\": 1,\n        \"cryptoListingId\": 5,\n        \"transactionType\": \"Buy\",\n        \"quantity\": 5,\n        \"unitPrice\": 4543.234,\n        \"totalAmount\": 22716.170000000002,\n        \"timestamp\": \"0001-01-01T00:00:00\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Tranzakció részleteinek lekérdezése",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transactions/details/:transactionId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transactions",
+								"details",
+								":transactionId"
+							],
+							"variable": [
+								{
+									"key": "transactionId",
+									"value": "f6a342e0-5f89-45cb-8fdf-ce7fbfecc43c",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/transactions/details/:transactionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions",
+										"details",
+										":transactionId"
+									],
+									"variable": [
+										{
+											"key": "transactionId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "profit (task 3.6)",
+			"item": [
+				{
+					"name": "Profit/Veszteség kiszámítása egy adott pillanatban",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/profit/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"profit",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/profit/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"profit",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Profit/Veszteség részletes lebontásban",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/profit/details/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"profit",
+								"details",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/profit/details/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"profit",
+										"details",
 										":userId"
 									],
 									"variable": [
