@@ -16,6 +16,7 @@ public class CryptoListing // mutable
     
     [Column(TypeName = "nvarchar(8)")]
     public CryptoListingState State { get; set; } // Only one active can be exits at time //FIXME
+    public DateTime ArchivedAt { get; set; }
     public List<CryptoTransaction> CryptoTransactions { get; set; } = new();
 }
 

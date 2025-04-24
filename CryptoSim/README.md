@@ -38,6 +38,7 @@ CryptoListing
 - CryptoId
 - Price
 - CryptoListingState // Active, Archived // Only one active can be exits at time
+- ArchivedAt // timestamp
 - CryptoTransactions
 
 Crypto

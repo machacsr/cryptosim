@@ -1,0 +1,1102 @@
+{
+	"info": {
+		"_postman_id": "7b153c50-2437-4234-a6a2-41eaeefabb4c",
+		"name": "CryptoSim API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cryptos (task 3.3)",
+			"item": [
+				{
+					"name": "ID",
+					"item": [
+						{
+							"name": "Kriptovaluta lekérdezése",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cryptos/:cryptoId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cryptos",
+										":cryptoId"
+									],
+									"variable": [
+										{
+											"key": "cryptoId",
+											"value": "5",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "Authorization",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/cryptos/:cryptoId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"cryptos",
+												":cryptoId"
+											],
+											"variable": [
+												{
+													"key": "cryptoId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Kriptovaluta törlése",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cryptos/:cryptoId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cryptos",
+										":cryptoId"
+									],
+									"variable": [
+										{
+											"key": "cryptoId",
+											"value": "3",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "Authorization",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/cryptos/:cryptoId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"cryptos",
+												":cryptoId"
+											],
+											"variable": [
+												{
+													"key": "cryptoId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Kriptovaluták listázása",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cryptos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cryptos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cryptos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cryptos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Apr 2025 20:59:33 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"cryptoId\": \"1\",\n        \"name\": \"Bitcoin\",\n        \"symbol\": \"BTC\",\n        \"price\": 29500\n    },\n    {\n        \"cryptoId\": \"2\",\n        \"name\": \"Ethereum\",\n        \"symbol\": \"ETH\",\n        \"price\": 1750\n    },\n    {\n        \"cryptoId\": \"3\",\n        \"name\": \"Solana\",\n        \"symbol\": \"SOL\",\n        \"price\": 95\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Új kriptovaluta hozzáadása",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"symbol\": \"KCoin3\",\n    \"name\": \"KisutyaCoin3\",\n    \"initialPrice\": 4543.234\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cryptos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cryptos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"symbol\": \"KCoin\",\n    \"name\": \"KisutyaCoin\",\n    \"initialPrice\": 4543.234\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/cryptos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cryptos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"symbol\": \"KCoin\",\n    \"name\": \"KisutyaCoin\",\n    \"cryptoListings\": [\n        {\n            \"id\": 5,\n            \"cryptoId\": 5,\n            \"price\": 4543.234,\n            \"state\": \"Active\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "trade (task 3.4)",
+			"item": [
+				{
+					"name": "Kriptovaluta vásárlása",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cryptoId\": 5,\n    \"quantity\": 5\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trade/buy/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trade",
+								"buy",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cryptoId\": -20236209,\n    \"quantity\": -76304965\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/trade/buy/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"trade",
+										"buy",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Kriptovaluta eladása",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cryptoId\": 5,\n    \"quantity\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trade/sell/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trade",
+								"sell",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cryptoId\": -20236209,\n    \"quantity\": -76304965\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/trade/sell/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"trade",
+										"sell",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "users (task 3.1)",
+			"item": [
+				{
+					"name": "ID",
+					"item": [
+						{
+							"name": "Felhasználó adatainak lekérdezése",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "Authorization",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Felhasználó adatainak frissítése",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"zseni@negy.hu\",\n    \"name\": \"ZsenNegy\",\n    \"password\": \"Password\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "4",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "Authorization",
+												"value": "<API Key>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"qky3hgWPN6@GcnBhuxnfboVenqxFZesgeGX.dgjy\",\n    \"name\": \"occaecat eu ipsum Ut\",\n    \"password\": \"laboris et reprehe\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Felhasználó törlése",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "4",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "Authorization",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Felhasználó regisztráció",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"qky3hgWPN6@GcnBhuxnfboVenqxFZesgeGX.dgjy\",\n    \"name\": \"occaecat eu ipsum Ut\",\n    \"password\": \"laboris et reprehe\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"qky3hgWPN6@GcnBhuxnfboVenqxFZesgeGX.dgjy\",\n    \"name\": \"occaecat eu ipsum Ut\",\n    \"password\": \"laboris et reprehe\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "wallet (task 3.2)",
+			"item": [
+				{
+					"name": "Pénztárca lekérdezése",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/wallet/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"wallet",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/wallet/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"wallet",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Pénztárca egyenleg frissítése",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"balance\": 84238587.78607428\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/wallet/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"wallet",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"balance\": 84238587.78607428\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/wallet/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"wallet",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Pénztárca törlése",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/wallet/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"wallet",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "2",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/wallet/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"wallet",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "portfolio (task 3.4)",
+			"item": [
+				{
+					"name": "Felhasználó portfóliójának lekérdezése",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/portfolio/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"portfolio",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/portfolio/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"portfolio",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"stringst\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: apikey",
+								"key": "Authorization",
+								"value": "<API Key>"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"wrtsjgeK6J@tuOAKXhPkt.ljyc\",\n    \"password\": \"ex fugiat quis\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RyaW5nIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoidXNlckBleGFtcGxlLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6ImY4NDEzODhiLTlmODQtNDgxYi1iM2ExLWVmZWZhN2E2ZDU3YiIsImF1dGhfdGltZSI6IjA0LzIyLzIwMjUgMjI6NTg6MDEiLCJleHAiOjE3NDU3ODc0ODEsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjUxNzciLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo1MTc3In0.ARP9PQUCvsDCKdhY3iESv38nB-RAs8SaQbdr_SL8SAc",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5177"
+		}
+	]
+}

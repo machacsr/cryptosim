@@ -15,12 +15,12 @@ public sealed class ScopedBackgroundService(
         {
             using IServiceScope scope = serviceScopeFactory.CreateScope();
 
-            BackgroundExchangeRateService scopedProcessingService =
-                scope.ServiceProvider.GetRequiredService<BackgroundExchangeRateService>();
+            ExchangeRateService scopedProcessingService =
+                scope.ServiceProvider.GetRequiredService<ExchangeRateService>();
 
             await scopedProcessingService.UpdateExchangeRateAsync(stoppingToken);
 
-            await Task.Delay(10_000, stoppingToken);
+            await Task.Delay(30_000, stoppingToken);
         }
     }
 

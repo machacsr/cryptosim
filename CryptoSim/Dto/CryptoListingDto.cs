@@ -14,6 +14,8 @@ public class CryptoListingDto
     [JsonConverter(typeof(JsonStringEnumConverter<CryptoListingState>))]
     public CryptoListingState State { get; set; }
     
+    public DateTime? ArchivedAt { get; set; }
+    
     //public List<CryptoTransactionDto> CryptoTransactions { get; set; } = new();
 }
 

@@ -28,7 +28,7 @@ builder.Services.AddScoped<TradeService, TradeServiceImpl>();
 builder.Services.AddScoped<PortfolioService, PortfolioServiceImpl>();
 builder.Services.AddScoped<IUnitOfWork, BasicUnitOfWork>();
 builder.Services.AddHostedService<ScopedBackgroundService>();
-builder.Services.AddScoped<BackgroundExchangeRateService, BackgroundExchangeRateServiceImpl>();
+builder.Services.AddScoped<ExchangeRateService, ExchangeRateServiceImpl>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
