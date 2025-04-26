@@ -36,8 +36,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Configuration\" />
-      <Folder Include="Migrations\" />
+        <None Update="Script\InitializeDatabase.sql">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>
