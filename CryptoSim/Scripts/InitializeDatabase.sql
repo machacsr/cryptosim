@@ -51,6 +51,6 @@ VALUES
 -- --- Tranzakciók ---
 INSERT INTO CryptoTransactions (Id, UserId, WalletId, CryptoListingId, CryptoId, TransactionType, Quantity, UnitPrice, TotalAmount, Timestamp)
 VALUES
-    ('f26c1475-55e3-4444-9fdd-df8f92def564', 1, 1, 1, 1,'Buy', 1, 29500.00, 2950.00, CURRENT_TIMESTAMP),
-    ('681dd320-32e2-4f78-9534-3dc6ca22780d', 1, 1, 2, 2, 'Buy', 2, 1750.00, 2625.00, CURRENT_TIMESTAMP),
-    ('a2d53ab4-a719-4ca3-98fe-65e8add88266', 2, 2, 3, 3, 'Buy', 10.0, 95.00, 950.00, CURRENT_TIMESTAMP);
+    ('f26c1475-55e3-4444-9fdd-df8f92def564', 1, 1, 1, 1,'Buy', 1, 29500.00, 29500.00, CURRENT_TIMESTAMP),
+    ('681dd320-32e2-4f78-9534-3dc6ca22780d', 1, 1, 2, 2, 'Buy', 2, 1750.00, 3500.00, CURRENT_TIMESTAMP),
+    ('a2d53ab4-a719-4ca3-98fe-65e8add88266', 2, 2, 3, 3, 'Buy', 10, 95.00, 950.00, CURRENT_TIMESTAMP);

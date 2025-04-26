@@ -233,7 +233,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"qky3hgWPN6@GcnBhuxnfboVenqxFZesgeGX.dgjy\",\n    \"name\": \"occaecat eu ipsum Ut\",\n    \"password\": \"laboris et reprehe\"\n}"
+							"raw": "{\n    \"email\": \"teszt@teszt.hu\",\n    \"name\": \"Teszt User Name\",\n    \"password\": \"stringst\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/users/register",
@@ -369,7 +369,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"balance\": 84238587.78607428\n}"
+							"raw": "{\n    \"balance\": 200000\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/wallet/:userId",

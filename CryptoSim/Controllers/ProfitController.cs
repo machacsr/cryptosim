@@ -65,18 +65,21 @@ public class ProfitController(IUnitOfWork unitOfWork): ControllerBase
         var response = new ProfitDetailsDto();
 
         var transactionsGroupByCrypto = user.CryptoTransactions.GroupBy(t => t.CryptoId).ToDictionary(g => g.Key, g => g.ToList());
+        
+        var latestListingGroupByCrypto = (await unitOfWork.CryptoListingRepository.GetAllAsync(listing => listing.State == CryptoListingState.Active))
+            .GroupBy(listing => listing.CryptoId)
+            .ToDictionary(g => g.Key, g => g.First());
+        
         foreach (var transactionGroup in transactionsGroupByCrypto)
         {
             var crypto = await unitOfWork.CryptoRepository.GetByIdAsync(transactionGroup.Key);
             if (crypto == null) continue; // not exists case
             var holdedCryptoItem = TransactionEvaluator.EvaluateByCrypto(transactionGroup.Value, crypto);
-            
-            var latestListing = (await unitOfWork.CryptoListingRepository.GetAllAsync(listing => listing.State == CryptoListingState.Active)).First();
-            
+
             // SUM( ACTUAL_PRICE - PURCHASE_PRICE )
             var aggregatedProfit = transactionGroup.Value.ToList()
                 .Where(transaction => transaction.TransactionType == CryptoTransactionType.Buy)
-                .Sum(transaction => latestListing.Price - transaction.TotalAmount);
+                .Sum(transaction => latestListingGroupByCrypto.GetValueOrDefault(crypto.Id)!.Price - transaction.TotalAmount);
             
             response.CryptoDeltas.Add(new CryptoProfitDetail()
             {
@@ -84,10 +87,12 @@ public class ProfitController(IUnitOfWork unitOfWork): ControllerBase
                 Name = holdedCryptoItem.Name,
                 Symbol = holdedCryptoItem.Symbol,
                 Quantity = holdedCryptoItem.Quantity,
-                MarketPrice = latestListing.Price,
+                MarketPrice = latestListingGroupByCrypto.GetValueOrDefault(crypto.Id)!.Price,
                 Delta = aggregatedProfit,
             });
         }
+        
+        response.TotalDelta = response.CryptoDeltas.Sum(delta => delta.Delta);
 
         return Ok(response);
     }
