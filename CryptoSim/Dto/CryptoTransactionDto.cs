@@ -9,6 +9,7 @@ public class CryptoTransactionDto
     public int UserId { get; set; }
     public int WalletId { get; set; }
     public int CryptoListingId { get; set; }
+    public int CryptoId { get; set; }
 
     [JsonConverter(typeof(JsonStringEnumConverter<CryptoTransactionType>))]
     public CryptoTransactionType TransactionType { get; set; }
